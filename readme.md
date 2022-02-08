@@ -1,44 +1,49 @@
-# Enum
+# Laravel Enum
 
-[![Latest Version on Packagist][ico-version]][link-packagist]
-[![Total Downloads][ico-downloads]][link-downloads]
-[![Build Status][ico-travis]][link-travis]
-[![StyleCI][ico-styleci]][link-styleci]
 
-This is where your description should go. Take a look at [contributing.md](contributing.md) to see a to do list.
+This package offers strongly typed enums in PHP.
+In this package we will change the value coming from the database and entered into it
 
 ## Installation
 
 Via Composer
 
 ``` bash
-$ composer require g4t/enum
+composer require g4t/enum
+```
+
+``` bash
+php artisan vendor:publish --provider=g4t\Enum\EnumServiceProvider
 ```
 
 ## Usage
 
-## Change log
+use the following code in model
 
-Please see the [changelog](changelog.md) for more information on what has changed recently.
+``` 
+use g4t\Enum\Status;
+.
+.
+.
 
-## Testing
+protected $casts = [
+  'column_name' => Status::class,
+];
 
-``` bash
-$ composer test
 ```
 
-## Contributing
+now go to `config/enum.php` you well find this example there:
 
-Please see [contributing.md](contributing.md) for details and a todolist.
+##### In the following code, the key is the value allowed in the database
+##### and value is the format to be output instead of the one in the database
+```
+<?php
 
-## Security
-
-If you discover any security related issues, please email hussein4alaa@gmail.com instead of using the issue tracker.
-
-## Credits
-
-- [HusseinAlaa][link-author]
-- [All Contributors][link-contributors]
+return [
+    '1' => 'active',
+    '2' => 'inactive'
+];
+```
 
 ## License
 
